@@ -1,0 +1,38 @@
+{
+	"name": "Youtube DLP",
+	"version": "1.0.0",
+	"description": "Adds a download button",
+	"manifest_version": 3,
+	"author": "SlimyRedstone",
+	"permissions": ["tabs", "activeTab", "scripting", "contextMenus"],
+	"action": {},
+	"background": {
+		"service_worker": "background.js"
+	},
+	"icons": {
+		"128": "icons/128.png"
+	},
+	"content_scripts": [
+		{
+			"css": ["main.css"],
+			"js": ["websites/youtube/video_back_page.js"],
+			"matches": ["https://*.youtube.com/watch"],
+			"run_at": "document_start",
+			"exclude_matches": [
+				"https://*.youtube.com/"
+			]
+		},
+		{
+			"css": ["main.css"],
+			"js": ["websites/youtube/home_back_page.js"],
+			"matches": ["https://*.youtube.com/*"],
+			"run_at": "document_start",
+			"exclude_matches": [
+				"https://*.youtube.com/watch"
+			]
+		}
+	],
+	"externally_connectable": {
+		"matches": ["https://*/*"]
+	}
+}
